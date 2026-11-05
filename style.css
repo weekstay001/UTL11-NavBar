@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+
+}
+
+:root {
+    --dark: #1f3a5f;
+    /* headings, the nav bar */
+    --light: #e8eef7;
+    /* hovered links */
+    --background: #fbfbf8;
+    /* the page */
+    --accent: #b7791f;
+    /* the current page, and hovered text */
+    --text: #222222;
+    --line: #d6d3cc;
+    --menu-background: rgba(31, 58, 95, 0.95);
+}
+
+body {
+
+    background-color: var(--background);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--dark);
+    line-height: 1.2;
+
+}
+
+header {
+    padding: 1.5rem 0 0.5rem;
+}
+
+header p {
+    margin: 0 0 1rem;
+}
+
+a:link {
+    color: var(--dark);
+}
+
+a:visited {
+    color: #5b4a7a;
+
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+a:active {
+    color: var(--accent);
+}
+
+nav {
+    background-color: var(--dark);
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Step 2: each item sits beside the last instead of under it. The
+     bar turns horizontal and the width comes off the nav. The relative
+     is for step 4: the menu measures from its own item. */
+    li {
+        display: inline-block;
+        position: relative;
+    }
+
+    a {
+        display: block;
+        padding: .75rem 1rem;
+        text-decoration: none;
+        font-weight: 600;
+
+        /* the same two states as a:link and a:visited above, so the
+       pseudo-class counts and white wins over the page colour */
+        &:link,
+        &:visited {
+            color: #ffffff;
+        }
+
+        &:hover {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+    }
+
+    /* Step 3: the page you are on. The > reaches the item's OWN link and
+     not the links in a menu inside it. */
+    .current>a {
+        background-color: var(--accent);
+    }
+
+    /* Step 4: the dropdown. Hidden, absolute under its item, a solid-looking
+     colour that is really 95% of the bar colour (rgba keeps the text solid). */
+    .menu {
+        display: none;
+        position: absolute;
+        min-width: 14rem;
+        margin: 0;
+        padding: .25rem 0;
+        top: 100%;
+        left: 0;
+
+
+        background-color: var(--menu-background);
+
+        li {
+            display: block;
+        }
+
+        a {
+            font-weight: 400;
+            padding: .5rem 1rem;
+        }
+
+        .soon {
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            opacity: 0.55;
+        }
+    }
+
+    /* shown on hover AND when keyboard focus is anywhere inside the item */
+    .has-menu:hover .menu,
+    .has-menu:focus-within .menu {
+        display: block;
+    }
+
+    .has-menu>a::after {
+        content: " \25BE";
+        font-size: .8em;
+    }
+}
+
+figure {
+    margin: 1.5rem 0;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    figcaption {
+        font-size: 0.9rem;
+        color: #555555;
+        padding: 0.35rem 0;
+
+    }
+
+}
+
+Footer {
+    border-top: 1px solid var(--line);
+    margin-top: 2rem;
+    padding-top: 0.75rem;
+    font-size: .9rem;
+}
